@@ -1,25 +1,26 @@
 ## Virtual Environment for Django 
 ```bash
-python3 -m pip install virtualenv
-python3 -m venv djangoEnv #name
-source djangoEnv/bin/activate
-(djangoEnv) python3 -m pip install --upgrade pip
-(djangoEnv) python3 -m pip install django~=2.1.0 #version
+$ python3 -m pip install virtualenv
+$ python3 -m venv djangoEnv #name
+$ source djangoEnv/bin/activate # ($ deactivate) to quit
+$ (djangoEnv) python3 -m pip install --upgrade pip
+$ (djangoEnv) python3 -m pip install django~=2.1.0 #version
 ```
 
 ## Start Project
 ```bash
-django-admin startproject hw2 . #name and location
+$ django-admin startproject hw2 . #name and location
 ```
 
 ## Start App
 ```bash
-(djangoEnv) python manage.py startapp board #name
+$ (djangoEnv) python manage.py startapp board #name
 
 # hw2/settings.py
-INSTALLED_APPS = [..., 'board',]
+INSTALLED_APPS = [..., 'board.apps.BoardConfig',]
 ```
 
+### Directory Structure
 ```
 waffle_hw2
 ├─── README.md
@@ -41,8 +42,31 @@ waffle_hw2
 
 ## Migration
 ```bash
-(djangoEnv) python manage.py makemigrations board
-(djangoEnv) python manage.py migrate board
+# modify board/models.py
+# modify board/admin.py
+
+$ (djangoEnv) python manage.py makemigrations board
+$ (djangoEnv) python manage.py migrate
+```
+
+## Update url
+```python
+# hw2/urls.py
+from django.conf.urls import include, url
+from django.contrib import admin
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'', include('board.urls')),
+]
+
+# create board/urls.py
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.post_list, name='post_list'),
+]
 ```
 
 ## References
