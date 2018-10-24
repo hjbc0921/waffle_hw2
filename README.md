@@ -69,6 +69,18 @@ urlpatterns = [
 ]
 ```
 
+## Create view
+```python
+# board/views.py
+from django.shortcuts import render
+
+def post_list(request):
+    return render(request, 'board/post_list.html', {})
+
+# create board/templates/board/post_list.html
+```
+
+
 ## References
 * [django girls](https://tutorial.djangogirls.org/ko/django_start_project/)
 * [waffle seminar](https://waffle-skile.github.io/lecture/3/)
