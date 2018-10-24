@@ -73,11 +73,22 @@ urlpatterns = [
 ```python
 # board/views.py
 from django.shortcuts import render
+from .models import Post
 
 def post_list(request):
-    return render(request, 'board/post_list.html', {})
+    posts = Post.objects.all()
+    return render(request, 'board/post_list.html', {'posts' : posts})
 
 # create board/templates/board/post_list.html
+```
+```html
+{% for post in posts %}
+    <div>
+        <p>created: {{ post.created_at }}</p>
+        <h1><a href="">{{ post.title }}</a></h1>
+        <p>{{ post.content|linebreaksbr }}</p>
+    </div>
+{% endfor %}
 ```
 
 
