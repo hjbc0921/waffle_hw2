@@ -17,4 +17,4 @@ $ python manage.py runserver
 ## References
 * [django girls](https://tutorial.djangogirls.org/ko/django_start_project/)
 * [waffle seminar](https://waffle-skile.github.io/lecture/3/)
-* [django official documentation]()
+* [django official documentation](https://docs.djangoproject.com/ko/2.1/topics/auth/default/)
