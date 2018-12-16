@@ -24,16 +24,20 @@ def post_detail(request, pk):
     author = False
     if (request.user == post.author):
         author = True
-    next = int(pk)+1
-    try:
-        Post.objects.get(pk=next)
-    except:
-        next = 0
-    prev = int(pk)-1
-    try:
-        Post.objects.get(pk=str(prev))
-    except:
+    posts = Post.objects.order_by('pk')
+    index = 0
+    for p in posts:
+        if (int(p.pk) == int(pk)):
+            break
+        index += 1
+    if (index == 0):
         prev = 0
+    else:
+        prev = posts[index-1].pk
+    if (index == len(posts)-1):
+        next = 0
+    else:
+        next = posts[index+1].pk
     return render(request, 'board/post_detail.html', {'post' : post, 'next':next, 'prev':prev, 'author':author})
 
 def post_edit(request, pk):
