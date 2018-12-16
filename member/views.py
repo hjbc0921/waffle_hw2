@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import UserForm, LoginForm
+from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 
@@ -12,9 +13,11 @@ def signup(request):
             return redirect('/posts')
     else:
         form = UserForm()
-        return render(request, 'member/adduser.html', {'form': form})
+        return render(request, 'member/signup.html', {'form': form})
 
 def signin(request):
+    if request.user.is_authenticated:
+        logout(request)
     if request.method == "POST":
         form = LoginForm(request.POST)
         username = request.POST['username']
@@ -24,11 +27,12 @@ def signin(request):
             login(request, user)
             return redirect('/posts')
         else:
-            return HttpResponse('로그인 실패. 다시 시도 해보세요.')
+            return render(request, 'member/signin.html', {'form': form, 'status':1})
     else:
         form = LoginForm()
-        return render(request, 'member/signin.html', {'form': form})
+        return render(request, 'member/signin.html', {'form': form, 'status':0})
 
-def signout(request):
-    logout(request)
-    return render(request, 'member/signout.html')
+def check(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return redirect('/signin')
