@@ -4,7 +4,7 @@
 * 최신순으로 정렬된 포스트와 내가 작성한 포스트의 목록을 확인할 수 있습니다.
 * 포스트를 클릭하여 내용을 확인할 수 있습니다.
 * main/이전/다음으로 이동할 수 있습니다.
-* 내가 작성한 포스트의 경우 편집/삭제할 수 있습니다.
+* 내가 작성한 포스트의 경우에만 편집/삭제할 수 있습니다.
 
 ## Preview
 ![capture](/assets/capture.png)
@@ -12,6 +12,8 @@
 ![capture](/assets/capture3.png)
 ![capture](/assets/capture4.png)
 ![capture](/assets/capture5.png)
+![capture](/assets/capture6.png)
+![capture](/assets/capture7.png)
 
 ## Start project
 ```bash

@@ -2,19 +2,36 @@
 
 {% block content %}
 
-{% if status %}
-    <h2>아이디 또는 비밀번호 오류.</h2>
-    <h3>다시 시도해주세요.</h3>
-{% else %}
-    <h2>로그인</h2>
-{% endif %}
-
-<form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="로그인" />
-</form>
-
-<a href="{% url 'signup' %}" class="btn btn-outline-dark">Signup</a>
+<div style="margin:10% auto;width:60%">
+    <div style="text-align:center">
+    {% if status %}
+        <h3>아이디 또는 비밀번호 오류.</h3>
+        <h4>다시 시도해주세요.</h4>
+    {% else %}
+        <h4>로그인해주세요.</h4>
+    {% endif %}
+    </div>
+    <br></br>
+    <form method="post" style="width:60%;margin:auto">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">username</label>
+            <input type="name" class="form-control" name="name" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">password</label>
+            <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+        </div>
+        <br></br>
+        <div style="text-align:center">
+            <button type="submit" name="submit" class="btn btn-primary">Login</button>
+        </div>
+    </form>
+    <br></br>
+    <div style="text-align:center">
+        <medium>계정이 없으신가요?&nbsp;&nbsp;</medium>
+        <a href="{% url 'signup' %}" class="btn btn-outline-dark btn-sm">Signup</a>
+    </div>
+</div>
 
 {% endblock %}
