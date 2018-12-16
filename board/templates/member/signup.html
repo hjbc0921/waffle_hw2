@@ -1,11 +1,6 @@
-{% extends 'board/base.html' %}
-
-{% block content %}
-    
-    <h1>New post</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Post</button>
-    </form>
-
-{% endblock %}
+<h2>회원가입</h2>
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="회원가입" />
+</form>
