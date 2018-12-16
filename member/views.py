@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import UserForm
+from .forms import UserForm, LoginForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate, logout
 
 def signup(request):
     if request.method == "POST":
@@ -9,7 +9,26 @@ def signup(request):
         if form.is_valid():
             new_user = User.objects.create_user(**form.cleaned_data)
             login(request, new_user)
-            return redirect('index')
+            return redirect('/posts')
     else:
         form = UserForm()
-        return render(request, 'memo_app/adduser.html', {'form': form})
+        return render(request, 'member/adduser.html', {'form': form})
+
+def signin(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username = username, password = password)
+        if user is not None:
+            login(request, user)
+            return redirect('/posts')
+        else:
+            return HttpResponse('로그인 실패. 다시 시도 해보세요.')
+    else:
+        form = LoginForm()
+        return render(request, 'member/signin.html', {'form': form})
+
+def signout(request):
+    logout(request)
+    return render(request, 'member/signout.html')
