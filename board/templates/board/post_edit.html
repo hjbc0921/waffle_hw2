@@ -1,11 +1,27 @@
 {% extends 'board/base.html' %}
 
 {% block content %}
-    
-    <h1>New post</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Post</button>
+
+<div style="margin:10% auto;width:60%;text-align:center">
+    {% if new %}
+    <h2>Write New Post</h2>
+    {% else %}
+    <h2>Edit Your Post</h2>
+    {% endif %}
+    <br></br>
+    <form method="post" style="width:60%;margin:auto">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="test" class="form-control" name="title" placeholder="Enter title" required value={{title}}>
+        </div>
+        <div class="form-group">
+            <label for="Content">Content</label>
+            <textarea class="form-control" name="content" rows="3">{{content}}</textarea>
+        </div>
+        <br></br>
+        <button type="submit" name="submit" class="btn btn-primary">Post</button>
     </form>
+</div>
 
 {% endblock %}

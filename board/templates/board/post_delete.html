@@ -2,10 +2,12 @@
 
 {% block content %}
     
-    <h1>Post 삭제를 원하시면 Delete button을 눌러주세요.</h1>
-    {{ title }}
+<div style="margin:10% auto;width:60%;text-align:center">
+    <h2>다음 게시물을 삭제합니다 : {{ title }}</h2>
+    <br></br>
     <form method="post">{% csrf_token %}
-        <button type="submit" name="submit">Delete</button>
+        <button class="btn btn-danger" type="submit" name="submit">Delete</button>
     </form>
+</div>
 
 {% endblock %}

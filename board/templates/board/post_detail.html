@@ -3,28 +3,33 @@
 {% block content %}
 
 <div>
-    <div class="list-group list-group-flush" style="width:80%;margin:10px 5px 0 0">
+    <div class="list-group list-group-flush" style="margin:10px auto">
         <li class="list-group-item disabled flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h3 class="mb-1">{{ post.title }}</h3>
-                {% if author %}
-                    <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-outline-dark">Edit</a>
-                    <a href="{% url 'post_delete' pk=post.pk %}" class="btn btn-outline-dark">Delete</a>
-                {% endif %}
+            <h3 class="mb-1">{{ post.title }}</h3>
+            {% if author %}
+            <div style="float:right">
+                <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-outline-dark btn-sm">Edit</a>
+                <a href="{% url 'post_delete' pk=post.pk %}" class="btn btn-outline-dark btn-sm">Delete</a>
             </div>
+            <br></br>
+            {% endif %}
             <div class="d-flex w-100 justify-content-between">
                 <small>created by {{ post.author }} at {{ post.created_at }}</small>
                 <small>last modified at {{ post.modified_at }}</small>
-            </div>    
+            </div> 
+            <br></br>   
             <p>{{ post.content }}</p>
         </li>
         <li class="list-group-item disabled flex-column align-items-start">
+            <a href="/posts" class="btn btn-outline-dark">Main</a>   
+            <div style="float:right">
+            {% if prev %}
+                <a href="{% url 'post_detail' pk=prev %}" class="btn btn-outline-dark">이전글</a>   
+            {% endif %}
             {% if next %}
                 <a href="{% url 'post_detail' pk=next %}" class="btn btn-outline-dark">다음글</a> 
             {% endif %}
-            {% if prev %}
-                <a href="{% url 'post_detail' pk=prev %}" class="btn btn-outline-dark">이전글</a>   
-            {% endif %}     
+            </div>  
         </li>
     </div>
 </div>
