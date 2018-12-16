@@ -1,0 +1,18 @@
+{% extends 'board/base.html' %}
+
+{% block content %}
+
+<div>
+    <div class="list-group list-group-flush" style="width:80%;margin:10px 5px 0 0">
+        <li class="list-group-item disabled flex-column align-items-start">
+            <h3 class="mb-1">{{ post.title }}</h3>
+            <div class="d-flex w-100 justify-content-between">
+                <small>created by {{ post.author }} at {{ post.created_at }}</small>
+                <small>last modified at {{ post.modified_at }}</small>
+            </div>    
+            <p>{{ post.content }}</p>
+            </li>
+    </div>
+</div>
+ 
+{% endblock %}

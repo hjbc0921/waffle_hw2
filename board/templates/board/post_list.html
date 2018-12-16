@@ -2,11 +2,7 @@
 
 {% block content %}
 
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">CRUD Board</a>
-    <a class="btn btn-outline-light" href="/login">Logout</a>
-</nav>
-<div class="container-fluid">
+<div>
     <div class="list-group list-group-flush" style="width:80%;margin:10px 5px 0 0">
         <li class="list-group-item disabled flex-column align-items-start">
             <h3 class="mb-1">Posts</h3>
@@ -17,7 +13,7 @@
         </li>
         {% for post in posts %}
             <div>
-                <a href="{% url 'post_create' %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                <a href="{% url 'post_detail' pk=post.pk %}" class="list-group-item list-group-item-action flex-column align-items-start">
                     <h3 class="mb-1">{{ post.title }}</h3>
                     <div class="d-flex w-100 justify-content-between">
                         <small>created by {{ post.author }} at {{ post.created_at }}</small>
