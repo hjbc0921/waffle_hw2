@@ -1,4 +1,12 @@
-## CRUD Board
+## CRUD Board Functions
+* 회원가입이 가능합니다.
+* 로그인 후 포스트 목록을 볼 수 있습니다.
+* 최신순으로 정렬된 포스트와 내가 작성한 포스트의 목록을 확인할 수 있습니다.
+* 포스트를 클릭하여 내용을 확인할 수 있습니다.
+* main/이전/다음으로 이동할 수 있습니다.
+* 내가 작성한 포스트의 경우 편집/삭제할 수 있습니다.
+
+## Preview
 ![capture](/assets/capture.png)
 ![capture](/assets/capture2.png)
 ![capture](/assets/capture3.png)
